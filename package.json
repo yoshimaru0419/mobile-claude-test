@@ -4,6 +4,7 @@
   "private": true,
   "description": "Web電卓アプリ（フロントエンドのみ）",
   "scripts": {
+    "build": "node scripts/build-check.js",
     "test": "node --test"
   },
   "engines": {
