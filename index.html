@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>電卓</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="calc">
+    <output id="display" class="display">0</output>
+    <div class="keys">
+      <button data-action="clear" class="key key-clear">C</button>
+      <button data-num="7" class="key">7</button>
+      <button data-num="8" class="key">8</button>
+      <button data-num="9" class="key">9</button>
+      <button data-num="4" class="key">4</button>
+      <button data-num="5" class="key">5</button>
+      <button data-num="6" class="key">6</button>
+      <button data-num="1" class="key">1</button>
+      <button data-num="2" class="key">2</button>
+      <button data-num="3" class="key">3</button>
+      <button data-num="0" class="key">0</button>
+      <button data-action="dot" class="key">.</button>
+      <button data-action="equals" class="key key-equals">=</button>
+    </div>
+  </main>
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
