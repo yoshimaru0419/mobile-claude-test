@@ -2,6 +2,10 @@
 // 演算は OPERATORS に登録する（加算・減算・乗算・除算は各コミットで追加）。
 const OPERATORS = {};
 
+OPERATORS.divide = {
+  fn: (a, b) => (b === 0 ? null : a / b),
+};
+
 OPERATORS.multiply = {
   fn: (a, b) => a * b,
 };
