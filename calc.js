@@ -2,6 +2,10 @@
 // 演算は OPERATORS に登録する（加算・減算・乗算・除算は各コミットで追加）。
 const OPERATORS = {};
 
+OPERATORS.multiply = {
+  fn: (a, b) => a * b,
+};
+
 OPERATORS.subtract = {
   fn: (a, b) => a - b,
 };
