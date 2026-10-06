@@ -1,0 +1,13 @@
+{
+  "name": "mobile-claude-test-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web電卓アプリ（フロントエンドのみ）",
+  "scripts": {
+    "build": "node scripts/build-check.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
