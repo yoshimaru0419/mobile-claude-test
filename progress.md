@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:53:43Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:53:50Z
 
 ## 現在
-- 作業中: API-51 完了（エージェント test-writer の作成）
-- 次の手順: 次のタスクへ
+- 作業中: API-52 完了（エージェント atlassian-writer の作成）
+- 次の手順: feature/ai-dev-agents の PR を作成
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -47,7 +47,7 @@
 | API-49 | エージェント | feature/ai-dev-agents | エージェント reviewer の作成 | 完了 |
 | API-50 | エージェント | feature/ai-dev-agents | エージェント implementer の作成 | 完了 |
 | API-51 | エージェント | feature/ai-dev-agents | エージェント test-writer の作成 | 完了 |
-| API-52 | エージェント | feature/ai-dev-agents | エージェント atlassian-writer の作成 | 未着手 |
+| API-52 | エージェント | feature/ai-dev-agents | エージェント atlassian-writer の作成 | 完了 |
 | API-53 | スキル | feature/ai-dev-skills | スキル ai-dev-start の作成 | 未着手 |
 | API-54 | スキル | feature/ai-dev-skills | スキル requirements-interview の作成 | 未着手 |
 | API-55 | スキル | feature/ai-dev-skills | スキル plan-tasks の作成 | 未着手 |
