@@ -1,9 +1,9 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:57:12Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:57:49Z
 
 ## 現在
-- 作業中: API-61 完了（フック session-start の作成）
+- 作業中: API-62 完了（フック guard-bash の作成）
 - 次の手順: 次のタスクへ
 
 ## 再開手順
@@ -59,7 +59,7 @@
 | API-59 | スキル | feature/ai-dev-skills | スキル confluence-ops の作成 | 完了 |
 | API-60 | スキル | feature/ai-dev-skills | スキル implement-with-tests の作成 | 完了 |
 | API-61 | フック | feature/ai-dev-hooks | フック session-start の作成 | 完了 |
-| API-62 | フック | feature/ai-dev-hooks | フック guard-bash の作成 | 未着手 |
+| API-62 | フック | feature/ai-dev-hooks | フック guard-bash の作成 | 完了 |
 | API-63 | フック | feature/ai-dev-hooks | フック guard-gate の作成 | 未着手 |
 | API-64 | フック | feature/ai-dev-hooks | フック verify-write の作成 | 未着手 |
 | API-65 | フック | feature/ai-dev-hooks | settings.json の作成（権限・フック登録・モデル固定） | 未着手 |
