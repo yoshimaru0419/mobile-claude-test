@@ -1,9 +1,9 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:50:52Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:50:58Z
 
 ## 現在
-- 作業中: API-38 完了（ルール 30-git の作成）
+- 作業中: API-39 完了（ルール 40-coding-test の作成）
 - 次の手順: 次のタスクへ
 
 ## 再開手順
@@ -32,7 +32,7 @@
 | API-36 | ルール | feature/ai-dev-rules | ルール 10-approval の作成 | 完了 |
 | API-37 | ルール | feature/ai-dev-rules | ルール 20-atlassian の作成 | 完了 |
 | API-38 | ルール | feature/ai-dev-rules | ルール 30-git の作成 | 完了 |
-| API-39 | ルール | feature/ai-dev-rules | ルール 40-coding-test の作成 | 未着手 |
+| API-39 | ルール | feature/ai-dev-rules | ルール 40-coding-test の作成 | 完了 |
 | API-40 | ルール | feature/ai-dev-rules | ルール 90-security の作成 | 未着手 |
 | API-41 | テンプレート | feature/ai-dev-templates | 要件定義書テンプレートの作成 | 未着手 |
 | API-42 | テンプレート | feature/ai-dev-templates | 基本設計書テンプレートの作成 | 未着手 |
