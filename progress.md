@@ -1,9 +1,9 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:53:23Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:53:30Z
 
 ## 現在
-- 作業中: API-48 完了（エージェント doc-writer の作成）
+- 作業中: API-49 完了（エージェント reviewer の作成）
 - 次の手順: 次のタスクへ
 
 ## 再開手順
@@ -44,7 +44,7 @@
 | API-46 | エージェント | feature/ai-dev-agents | エージェント requirements-analyst の作成 | 完了 |
 | API-47 | エージェント | feature/ai-dev-agents | エージェント task-planner の作成 | 完了 |
 | API-48 | エージェント | feature/ai-dev-agents | エージェント doc-writer の作成 | 完了 |
-| API-49 | エージェント | feature/ai-dev-agents | エージェント reviewer の作成 | 未着手 |
+| API-49 | エージェント | feature/ai-dev-agents | エージェント reviewer の作成 | 完了 |
 | API-50 | エージェント | feature/ai-dev-agents | エージェント implementer の作成 | 未着手 |
 | API-51 | エージェント | feature/ai-dev-agents | エージェント test-writer の作成 | 未着手 |
 | API-52 | エージェント | feature/ai-dev-agents | エージェント atlassian-writer の作成 | 未着手 |
