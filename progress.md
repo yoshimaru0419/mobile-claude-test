@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:55:37Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:55:44Z
 
 ## 現在
-- 作業中: API-59 完了（スキル confluence-ops の作成）
-- 次の手順: 次のタスクへ
+- 作業中: API-60 完了（スキル implement-with-tests の作成）
+- 次の手順: feature/ai-dev-skills の PR を作成
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -56,7 +56,7 @@
 | API-57 | スキル | feature/ai-dev-skills | スキル approval-gate の作成 | 完了 |
 | API-58 | スキル | feature/ai-dev-skills | スキル jira-ops の作成 | 完了 |
 | API-59 | スキル | feature/ai-dev-skills | スキル confluence-ops の作成 | 完了 |
-| API-60 | スキル | feature/ai-dev-skills | スキル implement-with-tests の作成 | 未着手 |
+| API-60 | スキル | feature/ai-dev-skills | スキル implement-with-tests の作成 | 完了 |
 | API-61 | フック | feature/ai-dev-hooks | フック session-start の作成 | 未着手 |
 | API-62 | フック | feature/ai-dev-hooks | フック guard-bash の作成 | 未着手 |
 | API-63 | フック | feature/ai-dev-hooks | フック guard-gate の作成 | 未着手 |
