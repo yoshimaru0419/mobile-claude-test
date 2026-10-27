@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:51:04Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:51:54Z
 
 ## 現在
-- 作業中: API-40 完了（ルール 90-security の作成）
-- 次の手順: feature/ai-dev-rules の PR を作成
+- 作業中: API-41 完了（要件定義書テンプレートの作成）
+- 次の手順: 次のタスクへ
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -20,6 +20,7 @@
 | ブランチ | PR |
 | --- | --- |
 | feature/ai-dev-base | #13 |
+| feature/ai-dev-rules | #14 |
 
 ## タスク
 | キー | 工程 | ブランチ | 件名 | 状態 |
@@ -34,7 +35,7 @@
 | API-38 | ルール | feature/ai-dev-rules | ルール 30-git の作成 | 完了 |
 | API-39 | ルール | feature/ai-dev-rules | ルール 40-coding-test の作成 | 完了 |
 | API-40 | ルール | feature/ai-dev-rules | ルール 90-security の作成 | 完了 |
-| API-41 | テンプレート | feature/ai-dev-templates | 要件定義書テンプレートの作成 | 未着手 |
+| API-41 | テンプレート | feature/ai-dev-templates | 要件定義書テンプレートの作成 | 完了 |
 | API-42 | テンプレート | feature/ai-dev-templates | 基本設計書テンプレートの作成 | 未着手 |
 | API-43 | テンプレート | feature/ai-dev-templates | 詳細設計書テンプレートの作成 | 未着手 |
 | API-44 | テンプレート | feature/ai-dev-templates | 単体テスト報告書テンプレートの作成 | 未着手 |
