@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:58:46Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:58:52Z
 
 ## 現在
-- 作業中: API-64 完了（フック verify-write の作成）
-- 次の手順: 次のタスクへ
+- 作業中: API-65 完了（settings.json の作成（権限・フック登録・モデル固定））
+- 次の手順: feature/ai-dev-hooks の PR を作成
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -62,4 +62,4 @@
 | API-62 | フック | feature/ai-dev-hooks | フック guard-bash の作成 | 完了 |
 | API-63 | フック | feature/ai-dev-hooks | フック guard-gate の作成 | 完了 |
 | API-64 | フック | feature/ai-dev-hooks | フック verify-write の作成 | 完了 |
-| API-65 | フック | feature/ai-dev-hooks | settings.json の作成（権限・フック登録・モデル固定） | 未着手 |
+| API-65 | フック | feature/ai-dev-hooks | settings.json の作成（権限・フック登録・モデル固定） | 完了 |
