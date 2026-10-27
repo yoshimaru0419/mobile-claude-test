@@ -1,9 +1,9 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:52:00Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:52:07Z
 
 ## 現在
-- 作業中: API-42 完了（基本設計書テンプレートの作成）
+- 作業中: API-43 完了（詳細設計書テンプレートの作成）
 - 次の手順: 次のタスクへ
 
 ## 再開手順
@@ -37,7 +37,7 @@
 | API-40 | ルール | feature/ai-dev-rules | ルール 90-security の作成 | 完了 |
 | API-41 | テンプレート | feature/ai-dev-templates | 要件定義書テンプレートの作成 | 完了 |
 | API-42 | テンプレート | feature/ai-dev-templates | 基本設計書テンプレートの作成 | 完了 |
-| API-43 | テンプレート | feature/ai-dev-templates | 詳細設計書テンプレートの作成 | 未着手 |
+| API-43 | テンプレート | feature/ai-dev-templates | 詳細設計書テンプレートの作成 | 完了 |
 | API-44 | テンプレート | feature/ai-dev-templates | 単体テスト報告書テンプレートの作成 | 未着手 |
 | API-45 | テンプレート | feature/ai-dev-templates | Jira タスクテンプレートと工程ラベル一覧の作成 | 未着手 |
 | API-46 | エージェント | feature/ai-dev-agents | エージェント requirements-analyst の作成 | 未着手 |
