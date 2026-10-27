@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:52:13Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:52:20Z
 
 ## 現在
-- 作業中: API-44 完了（単体テスト報告書テンプレートの作成）
-- 次の手順: 次のタスクへ
+- 作業中: API-45 完了（Jira タスクテンプレートと工程ラベル一覧の作成）
+- 次の手順: feature/ai-dev-templates の PR を作成
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -39,7 +39,7 @@
 | API-42 | テンプレート | feature/ai-dev-templates | 基本設計書テンプレートの作成 | 完了 |
 | API-43 | テンプレート | feature/ai-dev-templates | 詳細設計書テンプレートの作成 | 完了 |
 | API-44 | テンプレート | feature/ai-dev-templates | 単体テスト報告書テンプレートの作成 | 完了 |
-| API-45 | テンプレート | feature/ai-dev-templates | Jira タスクテンプレートと工程ラベル一覧の作成 | 未着手 |
+| API-45 | テンプレート | feature/ai-dev-templates | Jira タスクテンプレートと工程ラベル一覧の作成 | 完了 |
 | API-46 | エージェント | feature/ai-dev-agents | エージェント requirements-analyst の作成 | 未着手 |
 | API-47 | エージェント | feature/ai-dev-agents | エージェント task-planner の作成 | 未着手 |
 | API-48 | エージェント | feature/ai-dev-agents | エージェント doc-writer の作成 | 未着手 |
