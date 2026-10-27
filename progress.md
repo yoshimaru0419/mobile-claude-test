@@ -1,9 +1,9 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:49:28Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:49:35Z
 
 ## 現在
-- 作業中: API-32 完了（環境変数の雛形 .env.example の作成）
+- 作業中: API-33 完了（プロジェクト台帳 project.json の作成）
 - 次の手順: 次のタスクへ
 
 ## 再開手順
@@ -25,7 +25,7 @@
 | --- | --- | --- | --- | --- |
 | API-31 | 基盤 | feature/ai-dev-base | CLAUDE.md を AI駆動開発向けに整備 | 完了 |
 | API-32 | 基盤 | feature/ai-dev-base | 環境変数の雛形 .env.example の作成 | 完了 |
-| API-33 | 基盤 | feature/ai-dev-base | プロジェクト台帳 project.json の作成 | 未着手 |
+| API-33 | 基盤 | feature/ai-dev-base | プロジェクト台帳 project.json の作成 | 完了 |
 | API-34 | 基盤 | feature/ai-dev-base | 再開用の進捗ファイルの仕様と雛形の作成 | 未着手 |
 | API-35 | ルール | feature/ai-dev-rules | ルール 00-workflow の作成 | 未着手 |
 | API-36 | ルール | feature/ai-dev-rules | ルール 10-approval の作成 | 未着手 |
