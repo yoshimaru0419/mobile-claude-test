@@ -1,0 +1,23 @@
+---
+title: 固定・ライン消去・次のミノ・ゲームオーバー
+---
+sequenceDiagram
+  participant M as ui/main
+  participant G as core/game
+  participant D as core/board
+  participant Q as core/bag
+  M->>G: applyAction(状態, tick / softDrop / hardDrop)
+  Note over G: 下に動けない、またはハードドロップのとき
+  G->>D: lock(盤面, ミノ)
+  D-->>G: 新しい盤面
+  G->>D: clearLines(盤面)
+  D-->>G: 盤面と、消去した行数
+  G->>G: スコアに 行数×100 を加算し、累計行数を更新
+  G->>Q: takeNext(queue, 乱数)
+  Q-->>G: 次のミノと、補充した queue
+  G->>D: collides(盤面, 出現したミノ)
+  alt 固定済みブロックと重なる
+    G-->>M: ゲームオーバー（active なし）
+  else 重ならない
+    G-->>M: 新しい状態（次のミノが操作中）
+  end

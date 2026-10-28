@@ -1,0 +1,27 @@
+---
+title: ユーザー操作（キーボードと画面上ボタン）
+---
+sequenceDiagram
+  actor U as ユーザー
+  participant I as ui/input
+  participant M as ui/main
+  participant G as core/game
+  participant R as ui/renderer
+  alt キーボード
+    U->>I: keydown（キー）
+    I->>I: キーを操作に変換（対応表）
+  else 画面上ボタン
+    U->>I: pointerdown（ボタン）
+    I->>I: data-action を操作に変換
+  end
+  I->>M: dispatch(操作)
+  alt 高さ 640px 未満
+    M-->>I: 何もしない（入力を受け付けない）
+  else 対応する高さ
+    M->>G: applyAction(状態, 操作)
+    G-->>M: 新しい状態
+    opt リスタート、または一時停止からの再開
+      M->>M: 落下の蓄積時間を 0 に戻す
+    end
+  end
+  Note over M,R: 次のフレームで、新しい状態を描画する（02 を参照）

@@ -1,0 +1,29 @@
+---
+title: ゲームループ（自動落下と描画）
+---
+sequenceDiagram
+  participant B as ブラウザ
+  participant M as ui/main
+  participant R as ui/renderer
+  participant T as ui/timer
+  participant G as core/game
+  loop 毎フレーム
+    B->>M: frame(時刻)
+    M->>M: 前回との差 dt を求める
+    M->>R: applyViewport(画面の高さ)
+    R-->>M: 対応か
+    alt 高さ 640px 以上
+      M->>T: stepTimer(蓄積, dt, status, レベル)
+      T->>G: dropInterval(レベル)
+      G-->>T: 落下の間隔
+      T-->>M: 新しい蓄積と、tick を送るか
+      opt tick を送る
+        M->>G: applyAction(状態, tick)
+        G-->>M: 新しい状態
+      end
+      M->>R: render(状態, 幅, 高さ)
+    else 高さ 640px 未満
+      Note over M,R: ゲームは進めず、案内を表示する
+    end
+    M->>B: requestAnimationFrame(frame)
+  end

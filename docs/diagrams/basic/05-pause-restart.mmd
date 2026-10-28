@@ -1,0 +1,32 @@
+---
+title: 一時停止・再開・リスタート
+---
+sequenceDiagram
+  actor U as ユーザー
+  participant I as ui/input
+  participant M as ui/main
+  participant G as core/game
+  participant T as ui/timer
+  participant R as ui/renderer
+  U->>I: P キー / 一時停止ボタン
+  I->>M: dispatch(togglePause)
+  M->>G: applyAction(状態, togglePause)
+  alt playing
+    G-->>M: paused
+    loop 毎フレーム
+      M->>T: stepTimer(…, paused, …)
+      T-->>M: 蓄積は変わらず、tick なし
+      M->>R: render（「一時停止中」を表示）
+    end
+  else paused
+    G-->>M: playing
+    M->>M: 蓄積時間を 0 に戻す
+  else gameover
+    G-->>M: 変化なし（一時停止できない）
+  end
+  U->>I: R キー / リスタートボタン
+  I->>M: dispatch(restart)
+  M->>G: applyAction(状態, restart)
+  G->>G: createGame(同じ乱数) で初期化
+  G-->>M: 初期状態（playing）
+  M->>M: 蓄積時間を 0 に戻す

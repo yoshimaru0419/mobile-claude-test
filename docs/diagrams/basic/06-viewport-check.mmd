@@ -1,0 +1,21 @@
+---
+title: 画面の高さの判定（640px 未満の案内）
+---
+sequenceDiagram
+  participant B as ブラウザ
+  participant M as ui/main
+  participant R as ui/renderer
+  participant P as ページ（DOM）
+  B->>M: frame（毎フレーム）
+  M->>R: applyViewport(画面の高さ)
+  R->>R: isViewportSupported(高さ)
+  alt 640px 以上
+    R->>P: ゲームを表示、案内を隠す
+    R-->>M: true
+    M->>R: render(状態, 幅, 高さ)
+  else 640px 未満
+    R->>P: ゲームを隠し、案内「画面の高さが足りません」を表示
+    R-->>M: false
+    Note over M: tick も入力も受け付けない
+  end
+  Note over B,P: ウィンドウの大きさが戻ると、次のフレームで通常の表示に戻る
