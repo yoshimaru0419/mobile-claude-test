@@ -96,3 +96,10 @@ export function applyAction(state: GameState, action: Action): GameState {
       return state;
   }
 }
+
+/** 操作中のミノが、ハードドロップで落ちる位置（ゴースト）。ミノがなければ null。 */
+export function ghostPiece(state: GameState): ActivePiece | null {
+  const piece = state.active;
+  if (piece === null) return null;
+  return { ...piece, y: landingY(state.board, piece) };
+}
