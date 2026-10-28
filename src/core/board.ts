@@ -47,3 +47,11 @@ export function landingY(board: Board, piece: ActivePiece): number {
   while (!collides(board, { ...piece, y: y + 1 })) y++;
   return y;
 }
+
+/** すべての列が埋まった行を取り除き、上に空の行を足す。残った行の順序は変えない。消去した行数も返す。 */
+export function clearLines(board: Board): { board: Board; cleared: number } {
+  const kept = board.filter((row) => row.some((cell) => cell === null));
+  const cleared = board.length - kept.length;
+  const empty = Array.from({ length: cleared }, () => Array<Cell>(COLS).fill(null));
+  return { board: [...empty, ...kept], cleared };
+}

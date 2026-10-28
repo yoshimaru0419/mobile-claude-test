@@ -1,10 +1,25 @@
 import { takeNext, ensureQueue } from "./bag";
-import { createBoard, landingY, lock, rotated, shifted, collides } from "./board";
+import { clearLines, collides, createBoard, landingY, lock, rotated, shifted } from "./board";
 import type { Action, ActivePiece, GameState, Rng } from "./types";
 
 /** ミノの出現位置。形の行列の左端を列 3、最上段（行 0）に合わせる。 */
 const SPAWN_X = 3;
 const SPAWN_Y = 0;
+
+/** 消した 1 行あたりの得点。ドロップでの加点はない。 */
+const POINTS_PER_LINE = 100;
+/** レベルが 1 上がるのに必要な、消去した累計行数。 */
+const LINES_PER_LEVEL = 10;
+
+/** 消去した累計行数から、レベルを導く（レベルは状態に持たない）。 */
+export function levelOf(lines: number): number {
+  return Math.floor(lines / LINES_PER_LEVEL) + 1;
+}
+
+/** 落下の間隔（ミリ秒）。レベル 1 = 1000、レベル 10 以降 = 100。 */
+export function dropInterval(level: number): number {
+  return Math.max(100, 1100 - 100 * level);
+}
 
 /** 次のミノを出す。 */
 function spawnNext(state: GameState): GameState {
@@ -27,9 +42,16 @@ export function createGame(rng: Rng): GameState {
   });
 }
 
-/** 固定して、次のミノを出す。 */
+/** 固定し、ライン消去とスコアの加算をして、次のミノを出す。 */
 function lockAndSpawn(state: GameState, piece: ActivePiece): GameState {
-  return spawnNext({ ...state, board: lock(state.board, piece), active: null });
+  const { board, cleared } = clearLines(lock(state.board, piece));
+  return spawnNext({
+    ...state,
+    board,
+    active: null,
+    score: state.score + cleared * POINTS_PER_LINE,
+    lines: state.lines + cleared,
+  });
 }
 
 /** 1 マス下げる。下げられなければ、固定して次のミノを出す（tick と softDrop で共通）。 */
