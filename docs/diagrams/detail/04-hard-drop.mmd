@@ -7,9 +7,14 @@ sequenceDiagram
   participant X as board.collides
   participant L as game.lockAndSpawn
   A->>D: landingY(盤面, ミノ)
-  loop y + 1 のミノが重ならない間
+  loop 重なるまで
     D->>X: collides(盤面, y + 1 のミノ)
-    X-->>D: 重ならない → y を 1 増やす
+    X-->>D: 重なるか
+    alt 重ならない
+      D->>D: y を 1 増やして、続ける
+    else 重なる
+      D->>D: ループを終了する
+    end
   end
   D-->>A: 着地位置の y
   A->>L: lockAndSpawn(状態, y を着地位置にしたミノ)

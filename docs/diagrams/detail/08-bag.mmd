@@ -25,4 +25,4 @@ sequenceDiagram
   T->>E: ensureQueue(残りの queue, rng)
   E-->>T: 補充した queue
   T-->>G: 種類と、補充した queue
-  Note over G: NEXT 表示は peekNext(queue) で先頭を読むだけ（取り出さない）
+  Note over G: NEXT 表示は、renderer が state.queue[0] を直接読む（取り出さない。peekNext と同じ意味）

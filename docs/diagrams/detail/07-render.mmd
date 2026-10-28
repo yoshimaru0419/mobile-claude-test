@@ -13,7 +13,8 @@ sequenceDiagram
   opt マスの大きさが変わった
     R->>R: Canvas の幅と高さを 10 × マス、20 × マスにする
   end
-  R->>R: drawBoard：盤面を描く（空と固定済み）
+  Note over R: drawBoard(状態) の内部：盤面、ゴースト、操作中のミノの順に描く
+  R->>R: 盤面を描く（空と固定済み）
   R->>G: ghostPiece(状態)
   G-->>R: 着地位置のミノ、または null
   opt ゴーストがある
@@ -27,7 +28,7 @@ sequenceDiagram
   else status が gameover
     R->>R: drawMessage（ゲームオーバー、R キーまたはリスタート）
   end
-  R->>K: getCells(NEXT の種類, 向き 0)
+  R->>K: getCells(state.queue[0], 向き 0)
   K-->>R: 占めるマス
   R->>R: drawNext：NEXT の領域に中央寄せで描く
   R->>G: levelOf(lines)

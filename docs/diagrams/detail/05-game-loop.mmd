@@ -12,6 +12,7 @@ sequenceDiagram
   M->>M: dt = 最初のフレームは 0、以降は now − 前回（毎フレーム更新）
   M->>R: applyViewport(window.innerHeight)
   R-->>M: supported
+  Note over M: supported はモジュール変数に保存し、dispatch のガードにも使う（06 を参照）
   alt supported
     opt pieceCount が前回と違う
       M->>M: lastPieceCount を更新し、acc を 0 に戻す
