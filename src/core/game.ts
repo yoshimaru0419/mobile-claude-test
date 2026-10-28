@@ -21,11 +21,15 @@ export function dropInterval(level: number): number {
   return Math.max(100, 1100 - 100 * level);
 }
 
-/** 次のミノを出す。 */
+/** 次のミノを出す。出したミノの実マスが固定済みブロックと重なるなら、ゲームオーバーにする。 */
 function spawnNext(state: GameState): GameState {
   const { type, queue } = takeNext(state.queue, state.rng);
   const active: ActivePiece = { type, rotation: 0, x: SPAWN_X, y: SPAWN_Y };
-  return { ...state, queue, active, pieceCount: state.pieceCount + 1 };
+  const pieceCount = state.pieceCount + 1;
+  if (collides(state.board, active)) {
+    return { ...state, queue, active: null, status: "gameover", pieceCount };
+  }
+  return { ...state, queue, active, pieceCount };
 }
 
 /** ゲームの開始。空の盤面から、最初のミノを出す。 */
@@ -61,8 +65,18 @@ function stepDown(state: GameState, piece: ActivePiece): GameState {
   return lockAndSpawn(state, piece);
 }
 
+/** 進行中と一時停止中を切り替える。ゲームオーバー中は何もしない。 */
+function togglePause(state: GameState): GameState {
+  if (state.status === "playing") return { ...state, status: "paused" };
+  if (state.status === "paused") return { ...state, status: "playing" };
+  return state;
+}
+
 /** 操作を適用して、新しい状態を返す。元の状態は変更しない。 */
 export function applyAction(state: GameState, action: Action): GameState {
+  if (action === "restart") return createGame(state.rng);
+  if (action === "togglePause") return togglePause(state);
+
   const piece = state.active;
   if (state.status !== "playing" || piece === null) return state;
 
