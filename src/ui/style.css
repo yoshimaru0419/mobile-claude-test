@@ -1,0 +1,124 @@
+/* ページ全体は画面の高さに固定し、スクロールを禁止する（高さ 640px 以上が対象）。 */
+html,
+body {
+  height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #111;
+  color: #eee;
+  font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+#game {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#notice {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* 上段（高さ 72px 固定）: スコア・レベル・ライン数と、NEXT */
+#info {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 320px);
+}
+
+#stats {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+}
+
+#stats div {
+  display: flex;
+  gap: 8px;
+}
+
+#stats dt {
+  min-width: 3.5em;
+  color: #aaa;
+}
+
+#stats dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#next {
+  width: 72px;
+  height: 72px;
+  flex: none;
+  background: #1b1b1b;
+  border-radius: 4px;
+}
+
+#board {
+  display: block;
+  background: #1b1b1b;
+  border: 2px solid #444;
+  border-radius: 2px;
+  touch-action: none;
+}
+
+/* 下段: 画面上ボタン（3 行、高さ・幅とも 44px 以上） */
+#controls {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 360px);
+}
+
+.row {
+  display: grid;
+  gap: 8px;
+}
+
+.row.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.row.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+button {
+  min-width: 44px;
+  min-height: 48px;
+  padding: 0 8px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background: #2b2b2b;
+  color: #eee;
+  font-size: 16px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  background: #444;
+}

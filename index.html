@@ -4,9 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>テトリス</title>
+    <link rel="stylesheet" href="/src/ui/style.css" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="notice" hidden>画面の高さが足りません。640px 以上でお使いください</div>
+    <div id="game">
+      <header id="info">
+        <dl id="stats">
+          <div><dt>スコア</dt><dd id="score">0</dd></div>
+          <div><dt>レベル</dt><dd id="level">1</dd></div>
+          <div><dt>ライン</dt><dd id="lines">0</dd></div>
+        </dl>
+        <canvas id="next" width="72" height="72" aria-label="次のミノ"></canvas>
+      </header>
+      <canvas id="board" aria-label="盤面"></canvas>
+      <div id="controls">
+        <div class="row three">
+          <button type="button" data-action="left">左</button>
+          <button type="button" data-action="rotate">回転</button>
+          <button type="button" data-action="right">右</button>
+        </div>
+        <div class="row two">
+          <button type="button" data-action="softDrop">ソフトドロップ</button>
+          <button type="button" data-action="hardDrop">ハードドロップ</button>
+        </div>
+        <div class="row two">
+          <button type="button" data-action="togglePause">一時停止</button>
+          <button type="button" data-action="restart">リスタート</button>
+        </div>
+      </div>
+    </div>
+    <noscript>JavaScript を有効にしてください。</noscript>
     <script type="module" src="/src/ui/main.ts"></script>
   </body>
 </html>
