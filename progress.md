@@ -1,10 +1,10 @@
 # 進捗（再開用）
 
-> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-27T12:59:17Z
+> 利用制限で中断した場合は、このファイルを読んで再開する。最終更新: 2026-10-28T11:59:21Z
 
 ## 現在
-- 作業中: 全35タスク完了。PR 6本（#13〜#18）を作成済み
-- 次の手順: ユーザーのレビュー待ち。マージの指示があれば実行する
+- 作業中: AI駆動開発の基盤（35タスク・PR #13〜#18）がすべて develop_v2 にマージ済み
+- 次の手順: 次の改善候補: (1) confluence-ops の spaceId 参照 (2) guard-gate の遷移ID を project.json から読む (3) task.json の jq フィルター化 (4) project.json への書き込み先の再検討 (5) 電卓での通し動作確認
 
 ## 再開手順
 1. このファイルと Jira（プロジェクト API）で、未完了タスクを確認する（ラベル=工程、ステータス=進行中/To Do）。
@@ -19,12 +19,12 @@
 ## PR
 | ブランチ | PR |
 | --- | --- |
-| feature/ai-dev-base | #13 |
-| feature/ai-dev-rules | #14 |
-| feature/ai-dev-templates | #15 |
-| feature/ai-dev-agents | #16 |
-| feature/ai-dev-skills | #17 |
-| feature/ai-dev-hooks | #18 |
+| feature/ai-dev-base | #13（マージ済み） |
+| feature/ai-dev-rules | #14（マージ済み） |
+| feature/ai-dev-templates | #15（マージ済み） |
+| feature/ai-dev-agents | #16（マージ済み） |
+| feature/ai-dev-skills | #17（マージ済み） |
+| feature/ai-dev-hooks | #18（マージ済み） |
 
 ## タスク
 | キー | 工程 | ブランチ | 件名 | 状態 |
