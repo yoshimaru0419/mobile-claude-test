@@ -40,3 +40,10 @@ export function rotated(board: Board, piece: ActivePiece): ActivePiece {
   const turned = { ...piece, rotation: (piece.rotation + 1) % 4 };
   return collides(board, turned) ? piece : turned;
 }
+
+/** 重ならない範囲で、最も下まで落とした位置の y（hardDrop とゴーストで共有する）。 */
+export function landingY(board: Board, piece: ActivePiece): number {
+  let y = piece.y;
+  while (!collides(board, { ...piece, y: y + 1 })) y++;
+  return y;
+}
