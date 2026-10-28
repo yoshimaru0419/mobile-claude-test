@@ -1,0 +1,57 @@
+import { getCells } from "./pieces";
+import type { ActivePiece, Board, Cell } from "./types";
+
+export const ROWS = 20;
+export const COLS = 10;
+
+export function createBoard(): Board {
+  return Array.from({ length: ROWS }, () => Array<Cell>(COLS).fill(null));
+}
+
+/** ミノの占めるマスが、壁・床の外、または固定済みブロックと重なるか。行が 0 未満のマスは空きとして扱う。 */
+export function collides(board: Board, piece: ActivePiece): boolean {
+  for (const [dc, dr] of getCells(piece.type, piece.rotation)) {
+    const col = piece.x + dc;
+    const row = piece.y + dr;
+    if (col < 0 || col >= COLS || row >= ROWS) return true;
+    if (row >= 0 && (board[row]?.[col] ?? null) !== null) return true;
+  }
+  return false;
+}
+
+/** ミノを盤面に書き込んだ、新しい盤面。 */
+export function lock(board: Board, piece: ActivePiece): Board {
+  const next = board.map((row) => [...row]);
+  for (const [dc, dr] of getCells(piece.type, piece.rotation)) {
+    const row = next[piece.y + dr];
+    if (row !== undefined) row[piece.x + dc] = piece.type;
+  }
+  return next;
+}
+
+/** 左右に動かす。重なる場合は、元のミノを返す。 */
+export function shifted(board: Board, piece: ActivePiece, dx: number): ActivePiece {
+  const moved = { ...piece, x: piece.x + dx };
+  return collides(board, moved) ? piece : moved;
+}
+
+/** 時計回りに回す（壁蹴りなし）。重なる場合は、元のミノを返す。 */
+export function rotated(board: Board, piece: ActivePiece): ActivePiece {
+  const turned = { ...piece, rotation: (piece.rotation + 1) % 4 };
+  return collides(board, turned) ? piece : turned;
+}
+
+/** 重ならない範囲で、最も下まで落とした位置の y（hardDrop とゴーストで共有する）。 */
+export function landingY(board: Board, piece: ActivePiece): number {
+  let y = piece.y;
+  while (!collides(board, { ...piece, y: y + 1 })) y++;
+  return y;
+}
+
+/** すべての列が埋まった行を取り除き、上に空の行を足す。残った行の順序は変えない。消去した行数も返す。 */
+export function clearLines(board: Board): { board: Board; cleared: number } {
+  const kept = board.filter((row) => row.some((cell) => cell === null));
+  const cleared = board.length - kept.length;
+  const empty = Array.from({ length: cleared }, () => Array<Cell>(COLS).fill(null));
+  return { board: [...empty, ...kept], cleared };
+}
