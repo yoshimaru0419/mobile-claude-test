@@ -34,8 +34,10 @@ try:
     if not idx or min(idx) == 0:
         sys.exit(0)  # 工程ラベルがない、または最初の工程
     earlier = phases[: min(idx)]
-    jql = f'project = {project} AND labels in ({",".join(chr(34) + p + chr(34) for p in earlier)}) AND status != "完了"'
+    jql = f'project = {project} AND labels in ({",".join(chr(34) + p + chr(34) for p in earlier)}) AND statusCategory != Done'
     pending = get("/rest/api/3/search/jql", jql=jql, fields="summary,status", maxResults=20).get("issues", [])
+    # 検索の結果にも、完了（done）のものが混じらないよう、念のため取り除く
+    pending = [i for i in pending if i["fields"]["status"].get("statusCategory", {}).get("key") != "done"]
 except SystemExit:
     raise
 except Exception:
