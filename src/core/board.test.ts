@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import {
+  clearLines,
   collides,
   COLS,
   createBoard,
@@ -223,3 +224,79 @@ describe("F-07/F-14 landingY", () => {
   });
 });
 
+
+describe("F-08 clearLines", () => {
+  test("F-08 0 行: 盤面は変わらず、消去数 0", () => {
+    const board = boardOf({ 19: "ZZZZZZZZZ." });
+    const r = clearLines(board);
+    expect(r.cleared).toBe(0);
+    expect(r.board).toEqual(board);
+  });
+
+  test("F-08 空の盤面でも 0 行", () => {
+    expect(clearLines(createBoard()).cleared).toBe(0);
+  });
+
+  test("F-08 1 行: 消えて、上の行が 1 段下に詰まり、最上段に空行が入る", () => {
+    const board = boardOf({ 17: "I.........", 18: ".T........", 19: "ZZZZZZZZZZ" });
+    const r = clearLines(board);
+    expect(r.cleared).toBe(1);
+    expect(r.board).toHaveLength(20);
+    expect(r.board[19]).toEqual(board[18]);
+    expect(r.board[18]).toEqual(board[17]);
+    expect(r.board[0]?.every((c) => c === null)).toBe(true);
+    expect(r.board.every((row) => row.length === 10)).toBe(true);
+  });
+
+  test("F-08 複数行（2 行・3 行）を同時に消せる", () => {
+    const two = boardOf({ 18: "ZZZZZZZZZZ", 19: "SSSSSSSSSS" });
+    expect(clearLines(two).cleared).toBe(2);
+    const three = boardOf({ 16: "LLLLLLLLLL", 17: "JJJJJJJJJJ", 18: "OOOOOOOOOO", 15: "T........." });
+    const r = clearLines(three);
+    expect(r.cleared).toBe(3);
+    expect(r.board[18]?.[0]).toBe("T");
+  });
+
+  test("F-08 4 行同時: 400 点相当の 4 行が消え、上の行が 4 段下に詰まる", () => {
+    const board = boardOf({
+      14: "T.........",
+      15: ".T........",
+      16: "ZZZZZZZZZZ",
+      17: "ZZZZZZZZZZ",
+      18: "ZZZZZZZZZZ",
+      19: "ZZZZZZZZZZ",
+    });
+    const r = clearLines(board);
+    expect(r.cleared).toBe(4);
+    expect(r.board[18]).toEqual(board[14]);
+    expect(r.board[19]).toEqual(board[15]);
+    expect(r.board.slice(0, 18).every((row) => row.every((c) => c === null))).toBe(true);
+  });
+
+  test("F-08 詰まり方: 離れた行を消しても、残った行の順序は変わらない", () => {
+    const board = boardOf({
+      15: "I.........",
+      16: "ZZZZZZZZZZ",
+      17: ".O........",
+      18: "ZZZZZZZZZZ",
+      19: "..T.......",
+    });
+    const r = clearLines(board);
+    expect(r.cleared).toBe(2);
+    expect(r.board[17]).toEqual(board[15]);
+    expect(r.board[18]).toEqual(board[17]);
+    expect(r.board[19]).toEqual(board[19]);
+  });
+
+  test("F-08 1 マスだけ空いた行は消えない（境界）", () => {
+    const board = boardOf({ 19: ".ZZZZZZZZZ", 18: "ZZZZZZZZZ." });
+    expect(clearLines(board).cleared).toBe(0);
+  });
+
+  test("F-08 元の盤面を変更しない", () => {
+    const board = boardOf({ 18: "I.........", 19: "ZZZZZZZZZZ" });
+    const snapshot = JSON.stringify(board);
+    clearLines(board);
+    expect(JSON.stringify(board)).toBe(snapshot);
+  });
+});
