@@ -1,0 +1,24 @@
+---
+title: 起動とゲーム開始
+---
+sequenceDiagram
+  actor U as ユーザー
+  participant B as ブラウザ
+  participant M as ui/main
+  participant R as ui/renderer
+  participant G as core/game
+  participant Q as core/bag
+  participant I as ui/input
+  U->>B: ページを開く
+  B->>M: スクリプトを実行
+  M->>R: createRenderer(document)
+  Note over R: Canvas を取得できないときは「このブラウザでは動作しません」を表示して中断
+  M->>G: createGame(Math.random)
+  G->>Q: 7 種を補充し、最初のミノを取り出す
+  Q-->>G: 次のミノと queue
+  G-->>M: 初期状態（空の盤面、score 0、playing、最初のミノが操作中）
+  M->>R: applyViewport(画面の高さ)
+  R-->>M: 対応か（640px 以上）。結果は supported として保持
+  M->>I: attachInput(document, dispatch)
+  M->>B: requestAnimationFrame(frame)
+  Note over M,B: 以降、毎フレーム frame が呼ばれる（02 を参照）

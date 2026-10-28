@@ -1,0 +1,28 @@
+---
+title: 7 種バッグの補充と取り出し
+---
+sequenceDiagram
+  participant G as core/game
+  participant T as bag.takeNext
+  participant E as bag.ensureQueue
+  participant S as bag.shuffledBag
+  participant R as Rng（注入された乱数）
+  G->>T: takeNext(queue, rng)
+  T->>E: ensureQueue(queue, rng)
+  loop queue が 7 個未満の間
+    E->>S: shuffledBag(rng)
+    S->>S: I, O, T, S, Z, J, L の配列を作る
+    loop i = 6 から 1 まで
+      S->>R: rng()
+      R-->>S: 0 以上 1 未満の数
+      S->>S: j = floor(数 × (i + 1))、i 番目と j 番目を入れ替える
+    end
+    S-->>E: シャッフルした 7 種
+    E->>E: queue の末尾に足す
+  end
+  E-->>T: 7 個以上の queue
+  T->>T: 先頭を取り出す
+  T->>E: ensureQueue(残りの queue, rng)
+  E-->>T: 補充した queue
+  T-->>G: 種類と、補充した queue
+  Note over G: NEXT 表示は、renderer が state.queue[0] を直接読む（取り出さない。peekNext と同じ意味）

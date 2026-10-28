@@ -1,0 +1,46 @@
+---
+title: 入力（キーボード、ボタンの長押し、dispatch）
+---
+sequenceDiagram
+  actor U as ユーザー
+  participant I as input.attachInput
+  participant K as keyToAction / actionOfButton
+  participant M as ui/main.dispatch
+  participant G as game.applyAction
+  Note over I: 登録時：ボタンごとに actionOfButton で判定し、対応表にあるボタンだけ購読する（null のボタンには、リスナーを付けない）
+  U->>I: keydown
+  I->>K: keyToAction(event.code)
+  K-->>I: 操作、または null
+  alt null
+    I-->>U: 何もしない
+  else 操作あり
+    I->>I: preventDefault（スクロールなどを止める）
+    alt event.repeat かつ 繰り返さない操作
+      I-->>U: 無視（回転・ハードドロップ・一時停止・リスタート）
+    else
+      I->>M: onAction(操作)
+    end
+  end
+  Note over I: keyup は扱わない
+  U->>I: ボタンの pointerdown（登録時に決めた操作）
+  I->>I: preventDefault、動いている繰り返しを止める
+  I->>M: onAction(操作)
+  opt 左・右・ソフトドロップ
+    I->>I: setTimeout（200 ミリ秒）
+    loop 指を離すまで
+      I->>M: onAction(操作)（80 ミリ秒ごと）
+    end
+  end
+  U->>I: pointerup / pointercancel / pointerleave
+  I->>I: タイマーを止める
+  Note over I: ボタンの contextmenu は preventDefault（長押しメニューを出さない）
+  M->>M: dispatch(操作)
+  alt supported が false（高さ 640px 未満）
+    M-->>I: 何もしない
+  else supported
+    M->>G: applyAction(状態, 操作)
+    G-->>M: 新しい状態
+    opt 操作が restart、または paused から playing になった
+      M->>M: 蓄積時間 acc を 0 に戻す
+    end
+  end
