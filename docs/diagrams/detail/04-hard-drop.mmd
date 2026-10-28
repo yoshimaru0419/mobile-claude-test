@@ -1,0 +1,17 @@
+---
+title: ハードドロップ
+---
+sequenceDiagram
+  participant A as game.applyAction
+  participant D as board.landingY
+  participant X as board.collides
+  participant L as game.lockAndSpawn
+  A->>D: landingY(盤面, ミノ)
+  loop y + 1 のミノが重ならない間
+    D->>X: collides(盤面, y + 1 のミノ)
+    X-->>D: 重ならない → y を 1 増やす
+  end
+  D-->>A: 着地位置の y
+  A->>L: lockAndSpawn(状態, y を着地位置にしたミノ)
+  Note over L: 固定・消去・加点・次のミノ・ゲームオーバー判定（03 を参照）
+  L-->>A: 新しい状態

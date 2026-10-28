@@ -1,0 +1,41 @@
+---
+title: ゲームループ frame()
+---
+sequenceDiagram
+  participant B as ブラウザ
+  participant M as ui/main.frame
+  participant R as renderer.applyViewport
+  participant T as timer.stepTimer
+  participant G as core/game
+  participant V as renderer.render
+  B->>M: frame(now)
+  M->>M: dt = 最初のフレームは 0、以降は now − 前回（毎フレーム更新）
+  M->>R: applyViewport(window.innerHeight)
+  R-->>M: supported
+  alt supported
+    opt pieceCount が前回と違う
+      M->>M: lastPieceCount を更新し、acc を 0 に戻す
+    end
+    M->>G: levelOf(lines)
+    G-->>M: レベル
+    M->>T: stepTimer(acc, dt, status, レベル)
+    alt status が playing ではない
+      T-->>M: acc のまま、tick なし
+    else playing
+      T->>G: dropInterval(レベル)
+      G-->>T: 間隔
+      T->>T: dt を 250 以下に切り詰め、acc に足す
+      alt acc が間隔以上
+        T->>T: acc から間隔を引く。まだ間隔以上なら、余りにする
+        T-->>M: tick あり
+      else 間隔未満
+        T-->>M: tick なし
+      end
+    end
+    opt tick あり
+      M->>G: applyAction(状態, tick)
+      G-->>M: 新しい状態
+    end
+    M->>V: render(状態, 幅, 高さ)
+  end
+  M->>B: requestAnimationFrame(frame)

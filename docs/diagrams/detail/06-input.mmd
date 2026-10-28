@@ -1,0 +1,34 @@
+---
+title: 入力（キーボードとボタンの長押し）
+---
+sequenceDiagram
+  actor U as ユーザー
+  participant I as input.attachInput
+  participant K as keyToAction / actionOfButton
+  participant M as ui/main.dispatch
+  U->>I: keydown
+  I->>K: keyToAction(event.code)
+  K-->>I: 操作、または null
+  alt null
+    I-->>U: 何もしない
+  else 操作あり
+    I->>I: preventDefault（スクロールなどを止める）
+    alt event.repeat かつ 繰り返さない操作
+      I-->>U: 無視（回転・ハードドロップ・一時停止・リスタート）
+    else
+      I->>M: onAction(操作)
+    end
+  end
+  U->>I: ボタンの pointerdown
+  I->>K: actionOfButton(data-action)
+  K-->>I: 操作、または null
+  I->>I: preventDefault、動いている繰り返しを止める
+  I->>M: onAction(操作)
+  opt 左・右・ソフトドロップ
+    I->>I: setTimeout（200 ミリ秒）
+    loop 指を離すまで
+      I->>M: onAction(操作)（80 ミリ秒ごと）
+    end
+  end
+  U->>I: pointerup / pointercancel / pointerleave
+  I->>I: タイマーを止める

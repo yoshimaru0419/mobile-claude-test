@@ -1,0 +1,26 @@
+---
+title: 左右移動と回転（壁蹴りなし）
+---
+sequenceDiagram
+  participant A as game.applyAction
+  participant D as board.shifted / board.rotated
+  participant X as board.collides
+  participant K as pieces.getCells
+  alt left / right
+    A->>D: shifted(盤面, ミノ, ±1)
+    D->>D: x を ±1 したミノを作る
+  else rotate
+    A->>D: rotated(盤面, ミノ)
+    D->>D: 向きを（向き + 1）÷ 4 の余りにしたミノを作る
+  end
+  D->>X: collides(盤面, 新しいミノ)
+  X->>K: getCells(種類, 向き)
+  K-->>X: 占めるマス 4 件の相対位置
+  X->>X: 各マスが壁・床の外、または固定済みと重なるか（行が 0 未満は空き）
+  X-->>D: 重なるか
+  alt 重ならない
+    D-->>A: 新しいミノ
+  else 重なる
+    D-->>A: 元のミノ（動かない、回らない）
+  end
+  A->>A: active を置き換えた新しい状態を返す

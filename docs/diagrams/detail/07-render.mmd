@@ -1,0 +1,35 @@
+---
+title: 描画 render()
+---
+sequenceDiagram
+  participant M as ui/main
+  participant R as renderer.render
+  participant C as computeCellSize
+  participant G as core/game
+  participant K as pieces.getCells
+  M->>R: render(状態, 幅, 高さ)
+  R->>C: computeCellSize(幅, 高さ)
+  C-->>R: マスの大きさ（12〜32）
+  opt マスの大きさが変わった
+    R->>R: Canvas の幅と高さを 10 × マス、20 × マスにする
+  end
+  R->>R: drawBoard：盤面を描く（空と固定済み）
+  R->>G: ghostPiece(状態)
+  G-->>R: 着地位置のミノ、または null
+  opt ゴーストがある
+    R->>R: drawPiece(ゴースト, 不透明度 0.3)
+  end
+  opt 操作中のミノがある
+    R->>R: drawPiece(ミノ, 不透明度 1)（ゴーストより上）
+  end
+  alt status が paused
+    R->>R: drawMessage（一時停止中）
+  else status が gameover
+    R->>R: drawMessage（ゲームオーバー、R キーまたはリスタート）
+  end
+  R->>K: getCells(NEXT の種類, 向き 0)
+  K-->>R: 占めるマス
+  R->>R: drawNext：NEXT の領域に中央寄せで描く
+  R->>G: levelOf(lines)
+  G-->>R: レベル
+  R->>R: スコア・レベル・ライン数の文字と、一時停止ボタンの文字（一時停止 / 再開）を更新

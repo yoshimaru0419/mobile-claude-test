@@ -1,0 +1,33 @@
+---
+title: 落下（tick / softDrop）・固定・消去・次のミノ
+---
+sequenceDiagram
+  participant A as game.applyAction
+  participant S as game.stepDown
+  participant L as game.lockAndSpawn
+  participant D as core/board
+  participant W as game.spawnNext
+  participant Q as core/bag
+  A->>S: stepDown(状態, ミノ)
+  S->>D: collides(盤面, y + 1 のミノ)
+  D-->>S: 重なるか
+  alt 重ならない
+    S-->>A: active を 1 マス下げた状態
+  else 重なる（下に動けない）
+    S->>L: lockAndSpawn(状態, ミノ)
+    L->>D: lock(盤面, ミノ)
+    D-->>L: 書き込んだ新しい盤面
+    L->>D: clearLines(盤面)
+    D-->>L: 盤面と、消去した行数
+    L->>L: score += 行数 × 100、lines += 行数
+    L->>W: spawnNext(状態)
+    W->>Q: takeNext(queue, 乱数)
+    Q-->>W: 種類と、補充した queue
+    W->>W: 出現位置（x = 3、y = 0、向き 0）のミノを作り、pieceCount を 1 増やす
+    W->>D: collides(盤面, 出現したミノ)
+    alt 重なる
+      W-->>A: status = gameover、active = null
+    else 重ならない
+      W-->>A: active = 出現したミノ
+    end
+  end

@@ -1,5 +1,5 @@
 {
   "theme": "default",
   "themeVariables": { "fontFamily": "IPAPGothic, IPAGothic, 'Noto Sans CJK JP', sans-serif" },
-  "sequence": { "mirrorActors": false, "showSequenceNumbers": true, "wrap": true, "width": 160 }
+  "sequence": { "mirrorActors": false, "showSequenceNumbers": true, "width": 160 }
 }

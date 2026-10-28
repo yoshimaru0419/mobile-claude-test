@@ -1,0 +1,31 @@
+---
+title: applyAction の分岐
+---
+sequenceDiagram
+  participant C as 呼び出し元（ui/main）
+  participant A as game.applyAction
+  participant P as game.togglePause
+  participant N as game.createGame
+  C->>A: applyAction(状態, 操作)
+  alt 操作が restart
+    A->>N: createGame(状態.rng)
+    N-->>A: 初期状態
+    A-->>C: 初期状態（どの状態でも）
+  else 操作が togglePause
+    A->>P: togglePause(状態)
+    alt playing
+      P-->>A: status を paused に
+    else paused
+      P-->>A: status を playing に
+    else gameover
+      P-->>A: 元の状態
+    end
+    A-->>C: 新しい状態
+  else それ以外
+    alt status が playing ではない、または active が null
+      A-->>C: 元の状態（操作を無視）
+    else playing
+      Note over A: left / right / rotate / softDrop / tick / hardDrop を処理（02〜04 を参照）
+      A-->>C: 新しい状態
+    end
+  end
