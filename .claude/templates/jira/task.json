@@ -1,0 +1,27 @@
+{
+  "_comment": "Jira タスクの雛形。{{ }} を置き換えて、POST /rest/api/3/issue に渡す。説明欄は ADF 形式。",
+  "fields": {
+    "project": { "key": "{{プロジェクトキー}}" },
+    "issuetype": { "name": "タスク" },
+    "summary": "{{件名（40文字以内）}}",
+    "timetracking": { "originalEstimate": "{{見積もり 例: 2h}}" },
+    "duedate": "{{YYYY-MM-DD}}",
+    "labels": ["{{工程ラベル}}"],
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        { "type": "paragraph", "content": [{ "type": "text", "text": "【目的】{{目的を1文で}}" }] },
+        { "type": "paragraph", "content": [{ "type": "text", "text": "【対応要件】{{F-01, F-02}}" }] },
+        { "type": "paragraph", "content": [{ "type": "text", "text": "【成果物】{{ファイルやページ}}" }] },
+        { "type": "paragraph", "content": [{ "type": "text", "text": "【作業内容】" }] },
+        {
+          "type": "bulletList",
+          "content": [
+            { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "{{作業内容1}}" }] }] }
+          ]
+        }
+      ]
+    }
+  }
+}
