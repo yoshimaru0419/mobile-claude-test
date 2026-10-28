@@ -3,6 +3,7 @@ import {
   collides,
   COLS,
   createBoard,
+  landingY,
   lock,
   ROWS,
   rotated,
@@ -198,3 +199,27 @@ describe("F-05 rotated", () => {
     }
   });
 });
+
+describe("F-07/F-14 landingY", () => {
+  test("F-07 空の盤面では、床に着く y（横 I は 18、縦 I は 16）", () => {
+    expect(landingY(createBoard(), piece("I", 3, 0))).toBe(18);
+    expect(landingY(createBoard(), piece("I", 3, 0, 1))).toBe(16);
+  });
+
+  test("F-07 すでに着地位置なら、y は変わらない", () => {
+    expect(landingY(createBoard(), piece("I", 3, 18))).toBe(18);
+  });
+
+  test("F-07 固定済みブロックの上に着地する", () => {
+    const board = boardOf({ 15: "...Z......" });
+    // 横 I は行 y+1。列 3 の行 15 の上（行 14）に載る → y = 13
+    expect(landingY(board, piece("I", 3, 0))).toBe(13);
+  });
+
+  test("F-07 元のミノは変更されない", () => {
+    const p = piece("I", 3, 0);
+    landingY(createBoard(), p);
+    expect(p.y).toBe(0);
+  });
+});
+
