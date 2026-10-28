@@ -64,3 +64,9 @@
 | API-63 | フック | feature/ai-dev-hooks | フック guard-gate の作成 | 完了 |
 | API-64 | フック | feature/ai-dev-hooks | フック verify-write の作成 | 完了 |
 | API-65 | フック | feature/ai-dev-hooks | settings.json の作成（権限・フック登録・モデル固定） | 完了 |
+
+## テトリス開発（2026-10-28 追記）
+- 要件定義書: Confluence ページID 720897（承認済み）
+- Jira: API-66〜API-88（23件、ラベル: 工程名 + テトリス）。API-66 のみ完了、他は未着手
+- 次の一手: API-67（未決事項の確認：一時停止・実機確認手順書の要否）→ 基本設計（API-68〜70）
+- 工程の終わりごとにユーザー承認を得る（承認前に次工程へ着手しない）
