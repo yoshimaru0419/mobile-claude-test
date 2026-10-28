@@ -3,12 +3,30 @@
     "projectKey": "API",
     "issueType": "タスク",
     "statusMap": {
-      "未着手": { "name": "To Do", "transitionId": "11" },
-      "進行中": { "name": "進行中", "transitionId": "21" },
-      "承認待ち": { "name": "レビュー中", "transitionId": "31" },
-      "完了": { "name": "完了", "transitionId": "41" }
+      "未着手": {
+        "name": "To Do",
+        "transitionId": "11"
+      },
+      "進行中": {
+        "name": "進行中",
+        "transitionId": "21"
+      },
+      "承認待ち": {
+        "name": "レビュー中",
+        "transitionId": "31"
+      },
+      "完了": {
+        "name": "完了",
+        "transitionId": "41"
+      }
     },
-    "phaseLabels": ["要件定義", "基本設計", "詳細設計", "実装", "単体テスト"]
+    "phaseLabels": [
+      "要件定義",
+      "基本設計",
+      "詳細設計",
+      "実装",
+      "単体テスト"
+    ]
   },
   "confluence": {
     "spaceId": "98307",
@@ -21,12 +39,15 @@
   },
   "git": {
     "baseBranch": "develop_v2",
-    "branchPrefixes": ["feature/", "doc/"]
+    "branchPrefixes": [
+      "feature/",
+      "doc/"
+    ]
   },
   "stack": {
-    "language": null,
-    "framework": null,
-    "testCommand": null,
-    "note": "言語・フレームワークは可変。要件確定後に決めて、ここへ記録する。"
+    "language": "TypeScript",
+    "framework": "Vite（テストは Vitest、描画は Canvas）",
+    "testCommand": "npm test",
+    "note": "Node.js は 22 系の最新パッチ版を使う。言語・フレームワークは可変。要件確定後に決めて、ここへ記録する。"
   }
 }
