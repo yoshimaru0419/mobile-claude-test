@@ -1,0 +1,28 @@
+{
+  "name": "atl-cli",
+  "version": "0.1.0",
+  "description": "Atlassian Rovo MCP Server を普通のコマンドとして呼び出すCLIラッパー",
+  "type": "module",
+  "bin": {
+    "atl": "bin/atl.js"
+  },
+  "exports": "./src/mcp-client.js",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "keywords": [
+    "atlassian",
+    "mcp",
+    "cli",
+    "jira",
+    "confluence"
+  ],
+  "license": "MIT"
+}
