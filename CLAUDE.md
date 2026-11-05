@@ -14,3 +14,9 @@
 
 - 作業ブランチは必ず `develop` から作成する
 - 作成例: `git checkout -b feature/login origin/develop`
+
+## Atlassian（Jira / Confluence など）の操作
+
+Claude と GitHub Copilot で共通の指示を `AGENTS.md` にまとめている。Atlassian の操作は `AGENTS.md` に従う。
+
+@AGENTS.md
