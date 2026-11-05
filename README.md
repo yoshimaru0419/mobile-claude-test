@@ -15,7 +15,7 @@ Atlassian Rovo MCP Server を、MCP クライアントなしで普通のコマ�
 npm install -g .
 
 # GitHub から直接
-npm install -g github:yoshimaru0419/mobile-claude-test#develop_v4
+npm install -g github:yoshimaru0419/mobile-claude-test#feature/atl-cli
 ```
 
 ## 設定
@@ -24,7 +24,19 @@ npm install -g github:yoshimaru0419/mobile-claude-test#develop_v4
 | --- | --- |
 | `ATLASSIAN_API_TOKEN` | API トークン（必須）。`ATLASSIAN_EMAIL` がなければ Bearer として送信 |
 | `ATLASSIAN_EMAIL` | Atlassian アカウントのメールアドレス。指定すると Basic 認証 |
-| `ATLASSIAN_MCP_URL` | 接続先（省略時 `https://mcp.atlassian.com/v1/mcp`） |
+| `ATLASSIAN_MCP_URL` | 接続先（省略時 `https://mcp.atlassian.com/v2/mcp?tools=all`） |
+
+### 接続先について
+
+- 既定は Atlassian MCP v2 です。v1（`/v1/mcp`）では一部のツールしか使えません。
+- v2 の `/v2/mcp` は、よく使う「Primary」ツールだけを一覧に出し、それ以外は `discover` / `executeRead` などを経由して呼ぶ仕組みです。atl は `?tools=all` を付けて、利用できる全ツールを一覧に出しています。
+- 一覧に出るツールは、トークンのスコープと管理者の設定で決まります。
+
+### API トークン
+
+- 組織の管理者が API トークン認証を有効にする必要があります（Atlassian Administration → Rovo → Rovo MCP server → Authentication）。
+- **スコープ付きの API トークン**が必要です。スコープなしのトークンでは、認証は通ってもツールの実行が 401 になります。
+- 必要なスコープは `read:jira:agent-interface`、`search:jira:agent-interface`、`read:confluence:agent-interface` などです。全ツールとスコープの対応は公式の「Supported tools」ページを参照してください。
 
 ## 使い方
 

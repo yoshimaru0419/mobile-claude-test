@@ -1,7 +1,8 @@
 // MCP（Streamable HTTP）を最小限だけ話すクライアント
 import { readFileSync } from "node:fs";
 
-export const DEFAULT_URL = "https://mcp.atlassian.com/v1/mcp";
+// v2 は既定では主要ツールだけを返すため、?tools=all で利用可能な全ツールを一覧に出す
+export const DEFAULT_URL = "https://mcp.atlassian.com/v2/mcp?tools=all";
 export const PROTOCOL_VERSION = "2025-06-18";
 export const VERSION = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
