@@ -54,6 +54,32 @@ atl --url <URL> tools                       # 接続先を指定
 
 ツールが `isError` を返したときは、終了コード 1 で終わります。
 
+## 検証結果（2026-11-05）
+
+本番の Atlassian MCP v2 に、スコープ付き API トークン（Basic 認証）で接続して読み取りを確認しました。Node 24 で実行しています。
+
+### ツール一覧（`tools/list`）
+
+| 接続先 | ツール数 | Jira | Confluence | その他 |
+| --- | --- | --- | --- | --- |
+| `https://mcp.atlassian.com/v2/mcp?tools=all`（既定） | 232 | 43 | 71 | 118 |
+| `https://mcp.atlassian.com/v2/mcp` | 26 | 7 | 4 | 15 |
+
+- 内訳はツール名に `jira` / `confluence` を含むかどうかで数えた概算です。
+- `?tools=all` の「その他」には Bitbucket、JSM、Assets、Loom、Goals / Projects、Focus Area、Talent、Capacity Plan、Teamwork Graph、`search` などが含まれます。
+- `?tools=all` なしでは、`discover` / `executeRead` / `executeWrite` / `executeDestructive` と主要な Jira / Confluence ツールだけが一覧に出ます（`listJiraProjects` などは出ません）。
+
+### ツール実行
+
+| コマンド | 結果 |
+| --- | --- |
+| `atl call atlassianUserInfo` | 成功。`accountId` を取得 |
+| `atl call getAccessibleAtlassianResources` | 成功。アクセス可能なサイト 1 件、`cloudId` を取得（Jira / Confluence とも read-write） |
+| `atl call listJiraProjects cloudId=<cloudId>` | 成功。プロジェクト 1 件 |
+
+- エラーは発生しませんでした。
+- Rovo クレジットを消費しうるツール（`search` や Teamwork Graph 系）と、作成・更新・削除系のツールは実行していません。
+
 ## 開発
 
 ```sh
